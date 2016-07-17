@@ -291,24 +291,3 @@ class UploadToServer(Command):  # {{{
             'ssh main /usr/local/bin/update-calibre-version.py %s && /usr/local/bin/update-calibre-code.py && /apps/static/generate.py' % __version__
         ).split())
 # }}}
-
-# Testing {{{
-
-def write_files(fmap):
-    for f in fmap:
-        with open(f, 'wb') as f:
-            f.write(os.urandom(100))
-            f.write(b'a'*1000000)
-    with open('fmap', 'wb') as fo:
-        for f, desc in fmap.iteritems():
-            fo.write('%s: %s\n'%(f, desc))
-
-def setup_installers():
-    ver = '0.0.1'
-    files = {x.replace(__version__, ver):installer_description(x) for x in installers()}
-    tdir = mkdtemp()
-    os.chdir(tdir)
-    return tdir, files, ver
-
-# }}}
-
