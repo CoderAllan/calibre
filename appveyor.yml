@@ -4,7 +4,6 @@ clone_folder: C:\calibre
 clone_depth: 5
 
 cache:
-    - node_modules
     - .build-cache
 
 environment:
